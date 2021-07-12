@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './TopBar.module.css'
 import SearchIcon from '@material-ui/icons/Search';
 import PersonIcon from '@material-ui/icons/Person';
-import {Chat, Notifications, SearchRounded} from '@material-ui/icons'
+import {Chat, Notifications} from '@material-ui/icons'
 
 function TopBar() {
 	return (
