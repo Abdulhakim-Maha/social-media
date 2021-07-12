@@ -27,11 +27,11 @@ function Post() {
         <div className={classes.postBottom}>
           <div className={classes.postBottomLeft}>
             <img src="/assets/like.png" alt="" className={classes.likeIcon} />
-            <img src="/assets/heart.png" alt="" className={classes.heartIcon} />
+            <img src="/assets/heart.png" alt="" className={classes.likeIcon} />
             <span className={classes.postLikeCounter}>22 people like it</span>
           </div>
           <div className={classes.postBottomRight}>
-			  <span className="classes postCommentText">9 comments</span>
+			  <span className={classes.postCommentText}>3 comments</span>
 		  </div>
         </div>
       </div>
