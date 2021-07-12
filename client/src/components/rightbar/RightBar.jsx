@@ -11,7 +11,7 @@ function RightBar() {
             <b>Fais Saleang</b> has a birthday today
           </span>
         </div>
-        <img src="/assets/ad.png" alt="" className={classes.rightbarAd} />
+        <img src="/assets/adver.jpg" alt="" className={classes.rightbarAd} />
         <h4 className={classes.rightbarTitle}>Online Friends</h4>
         <ul className={classes.rightbarFriendList}>
           <li className={classes.rightbarFriend}>

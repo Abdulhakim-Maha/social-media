@@ -1,8 +1,17 @@
 import React from "react";
 import classes from "./Post.module.css";
 import { MoreVert } from "@material-ui/icons";
+import { Users } from "../../dummyData";
 
-function Post() {
+function Post(props) {
+  const allUser = Users;
+  const user = allUser.find(user => user.id === props.userId).username;
+
+  // const user = Users.find((user) => {
+  //   return user.id === props.userId;
+  // });
+  
+
   return (
     <div className={classes.post}>
       <div className={classes.postWrapper}>
@@ -13,26 +22,26 @@ function Post() {
               alt=""
               className={classes.postProfileImg}
             />
-            <span className={classes.postUsername}>Fais Nuanmee</span>
-            <span className={classes.postDate}>5 mins ago</span>
+            <span className={classes.postUsername}></span>
+            <span className={classes.postDate}>{props.date}</span>
           </div>
           <div className={classes.postTopRight}>
             <MoreVert />
           </div>
         </div>
         <div className={classes.postCenter}>
-          <span className={classes.postText}>This is my first post!!</span>
-          <img src="/assets/post/1.jpeg" alt="" className={classes.postImg} />
+          <span className={classes.postText}>{props?.desc}</span>
+          <img src={props.photo} alt="" className={classes.postImg} />
         </div>
         <div className={classes.postBottom}>
           <div className={classes.postBottomLeft}>
             <img src="/assets/like.png" alt="" className={classes.likeIcon} />
             <img src="/assets/heart.png" alt="" className={classes.likeIcon} />
-            <span className={classes.postLikeCounter}>22 people like it</span>
+            <span className={classes.postLikeCounter}>{props.like}</span>
           </div>
           <div className={classes.postBottomRight}>
-			  <span className={classes.postCommentText}>3 comments</span>
-		  </div>
+            <span className={classes.postCommentText}>{props.comment}</span>
+          </div>
         </div>
       </div>
     </div>
