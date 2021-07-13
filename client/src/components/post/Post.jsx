@@ -3,15 +3,8 @@ import classes from "./Post.module.css";
 import { MoreVert } from "@material-ui/icons";
 import { Users } from "../../dummyData";
 
-function Post(props) {
-  const allUser = Users;
-  const user = allUser.find(user => user.id === props.userId).username;
-
-  // const user = Users.find((user) => {
-  //   return user.id === props.userId;
-  // });
-  
-
+const Post = (props) => {
+  const username = Users.find((user) => user.id === props.userId).username;
   return (
     <div className={classes.post}>
       <div className={classes.postWrapper}>
@@ -22,7 +15,7 @@ function Post(props) {
               alt=""
               className={classes.postProfileImg}
             />
-            <span className={classes.postUsername}></span>
+            <span className={classes.postUsername}>{username}</span>
             <span className={classes.postDate}>{props.date}</span>
           </div>
           <div className={classes.postTopRight}>
@@ -46,6 +39,6 @@ function Post(props) {
       </div>
     </div>
   );
-}
+};
 
 export default Post;

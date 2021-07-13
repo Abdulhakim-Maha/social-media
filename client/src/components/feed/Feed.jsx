@@ -22,7 +22,6 @@ function Feed() {
             />
           );
         })}
-        <Post />
       </div>
     </div>
   );

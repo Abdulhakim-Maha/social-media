@@ -48,7 +48,7 @@ export const Users = [
     id:10,
     profilePicture: "assets/person/10.jpeg",
     username: "Narawee Loni",
-  },
+  }
 ];
 
 export const Posts = [
