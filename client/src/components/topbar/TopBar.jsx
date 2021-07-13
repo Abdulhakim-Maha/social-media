@@ -8,7 +8,7 @@ function TopBar() {
 	return (
 		<div className={classes.topbarContainer}>
 			<div className={classes.topbarLeft}>
-				<span className={classes.logo}>Facebook</span>
+				<span className={classes.logo}>Faisbook</span>
 			</div>
 			<div className={classes.topbarCenter}>
 				<div className={classes.searchBar}>

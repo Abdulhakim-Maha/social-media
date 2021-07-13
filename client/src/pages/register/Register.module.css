@@ -1,0 +1,108 @@
+.register {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.registerWrapper {
+  width: 70%;
+  height: 70%;
+  display: flex;
+}
+
+.registerLeft,
+.registerRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.registerLogo {
+  font-size: 50px;
+  font-weight: 800;
+  color: #1775ee;
+  margin-bottom: 10px;
+}
+.registerDesc {
+  font-size: 24px;
+}
+
+.registerBox {
+  height: 300px;
+  margin-left: 100px;
+  width: 60%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.firstnameAndLastname {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lastname,
+.firstname {
+  height: 45px;
+  width: 40%;
+  border-radius: 10px;
+  border: 0.5px solid rgb(169, 167, 167);
+  font-size: 18px;
+  padding: 0 20px;
+  margin-bottom: 3px;
+}
+.lastname{
+  margin-left: 5px;
+}
+
+.registerInput {
+  height: 50px;
+  border-radius: 10px;
+  margin: 3px 0;
+  padding: 0 20px;
+  border: 0.5px solid rgb(169, 167, 167);
+  font-size: 18px;
+}
+.firstname:focus,
+.lastname:focus,
+.registerInput:focus {
+  outline: none;
+}
+.registerButton {
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #1775ee;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.registerForgot {
+  text-align: center;
+  color: #1775ee;
+}
+.hr {
+  background-color: rgb(169, 167, 167);
+  margin-top: 7px;
+}
+.signInButton {
+  align-self: center;
+  width: 50%;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 7px;
+  background-color: #42b72a;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
