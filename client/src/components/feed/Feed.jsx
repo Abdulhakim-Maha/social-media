@@ -12,13 +12,7 @@ function Feed() {
         {Posts.map((post) => {
           return (
             <Post
-              key={post.id}
-              userId={post.userId}
-              photo={post.photo}
-              date={post.date}
-              comment={post.comment}
-              like={post.like}
-              desc={post.desc}
+              post={post}
             />
           );
         })}
