@@ -4,18 +4,18 @@ import { MoreVert } from "@material-ui/icons";
 import { Users } from "../../dummyData";
 
 const Post = (props) => {
-  const username = Users.find((user) => user.id === props.post.userId).username;
+  const user = Users.find((user) => user.id === props.post.userId);
   return (
     <div className={classes.post}>
       <div className={classes.postWrapper}>
         <div className={classes.postTop}>
           <div className={classes.postTopLeft}>
             <img
-              src="/assets/person/2.jpeg"
+              src={user.profilePicture}
               alt=""
               className={classes.postProfileImg}
             />
-            <span className={classes.postUsername}>{username}</span>
+            <span className={classes.postUsername}>{user.username}</span>
             <span className={classes.postDate}>{props.post.date}</span>
           </div>
           <div className={classes.postTopRight}>

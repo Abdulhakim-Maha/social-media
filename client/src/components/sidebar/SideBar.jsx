@@ -11,6 +11,8 @@ import {
   Event,
   School,
 } from "@material-ui/icons";
+import { Users } from "../../dummyData";
+import Friends from '../Friends/Friends' 
 
 function SideBar() {
   return (
@@ -57,30 +59,9 @@ function SideBar() {
 		<button className={classes.sidebarButton}>Show More</button>
 		<hr className={classes.sidebarHr} />
 		<ul className={classes.sidebarFriendList}>
-			<li className={classes.sidebarFriend}>
-				<img src="/assets/person/7.jpeg" alt="" className={classes.sidebarFriendImg} />
-				<span className={classes.sidebarFriendName}>Fais Saleang</span>
-			</li>
-			<li className={classes.sidebarFriend}>
-				<img src="/assets/person/7.jpeg" alt="" className={classes.sidebarFriendImg} />
-				<span className={classes.sidebarFriendName}>Fais Saleang</span>
-			</li>
-			<li className={classes.sidebarFriend}>
-				<img src="/assets/person/7.jpeg" alt="" className={classes.sidebarFriendImg} />
-				<span className={classes.sidebarFriendName}>Fais Saleang</span>
-			</li>
-			<li className={classes.sidebarFriend}>
-				<img src="/assets/person/7.jpeg" alt="" className={classes.sidebarFriendImg} />
-				<span className={classes.sidebarFriendName}>Fais Saleang</span>
-			</li>
-			<li className={classes.sidebarFriend}>
-				<img src="/assets/person/7.jpeg" alt="" className={classes.sidebarFriendImg} />
-				<span className={classes.sidebarFriendName}>Fais Saleang</span>
-			</li>
-			<li className={classes.sidebarFriend}>
-				<img src="/assets/person/7.jpeg" alt="" className={classes.sidebarFriendImg} />
-				<span className={classes.sidebarFriendName}>Fais Saleang</span>
-			</li>
+      {Users.map(user => {
+        return <Friends key={user.id} user={user} />
+      })}
 		</ul>
       </div>
     </div>

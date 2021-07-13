@@ -7,7 +7,7 @@ export const Users = [
   {
     id:2,
     profilePicture: "assets/person/2.jpeg",
-    username: "Fais Nuanmee",
+    username: "Faiz Nuanmee",
   },
   {
     id:3,
@@ -47,14 +47,14 @@ export const Users = [
   {
     id:10,
     profilePicture: "assets/person/10.jpeg",
-    username: "Narawee Loni",
+    username: "Fahad Tayeh",
   }
 ];
 
 export const Posts = [
   {
     id: 1,
-    desc: "Love For All, Hatred For None.",
+    desc: "Love For All, Hated For None.",
     photo: "assets/post/1.jpeg",
     date: "5 mins ago",
     userId: 1,
