@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const bodyParser = require('body-parser')
 
 //include
 const userRoutes = require('./routes/user')
@@ -16,9 +17,16 @@ dotenv.config();
 
 
 //middleware
+// app.use(bodyParser.json())
 app.use(express.json())
 app.use(helmet())
 app.use(morgan('combined'))
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, PATCH');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  next()
+})
 
 //routers
 app.use('/api/user', userRoutes);

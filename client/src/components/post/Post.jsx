@@ -20,7 +20,7 @@ const Post = (props) => {
         <div className={classes.postTop}>
           <div className={classes.postTopLeft}>
             <img
-              src={user.profilePicture}
+              src={PF + 'person/1.jpeg'}
               alt=""
               className={classes.postProfileImg}
             />
