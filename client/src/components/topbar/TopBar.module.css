@@ -83,3 +83,6 @@
   object-fit: cover;
   cursor: pointer;
 }
+.link{
+  text-decoration: none;
+}

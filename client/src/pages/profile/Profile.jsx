@@ -6,6 +6,7 @@ import RightBar from "../../components/rightbar/RightBar";
 import classes from "./Profile.module.css";
 
 const Profile = (props) => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div>
       <React.Fragment>
@@ -16,12 +17,12 @@ const Profile = (props) => {
             <div className={classes.profileRightTop}>
               <div className={classes.profileCover}>
                 <img
-                  src="/assets/post/3.jpeg"
+                  src={`${PF}/post/3.jpeg`}
                   alt=""
                   className={classes.profileCoverImg}
                 />
                 <img
-                  src="/assets/person/2.jpeg"
+                  src={`${PF}/person/2.jpeg`}
                   alt=""
                   className={classes.profileUserImg}
                 />

@@ -37,8 +37,8 @@ const Post = (props) => {
         </div>
         <div className={classes.postBottom}>
           <div className={classes.postBottomLeft}>
-            <img src="/assets/like.png" alt="" className={classes.likeIcon} onClick={likeHandler} />
-            <img src="/assets/heart.png" alt="" className={classes.likeIcon} onClick={likeHandler} />
+            <img src={`${PF}like.png`}alt="" className={classes.likeIcon} onClick={likeHandler} />
+            <img src={`${PF}heart.png`} alt="" className={classes.likeIcon} onClick={likeHandler} />
             <span className={classes.postLikeCounter}>{like}</span>
           </div>
           <div className={classes.postBottomRight}>
