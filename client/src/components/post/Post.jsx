@@ -6,7 +6,7 @@ import { Users } from "../../dummyData";
 const Post = (props) => {
   const [like, setLike] = useState(props.post.like)
   const [isLiked, setIsLiked] = useState(false)
-
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const user = Users.find((user) => user.id === props.post.userId);
 
   const likeHandler = () => {
@@ -33,7 +33,7 @@ const Post = (props) => {
         </div>
         <div className={classes.postCenter}>
           <span className={classes.postText}>{props.post?.desc}</span>
-          <img src={props.post.photo} alt="" className={classes.postImg} />
+          <img src={PF + props.post.photo} alt="" className={classes.postImg} />
         </div>
         <div className={classes.postBottom}>
           <div className={classes.postBottomLeft}>
