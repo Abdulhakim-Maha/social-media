@@ -47,7 +47,7 @@ const Profile = (props) => {
 			  </div>
             </div>
             <div className={classes.profileRightBottom}>
-              <Feed username="austiniqer"/>
+              <Feed username={username} />
               <RightBar user={user} />
             </div>
           </div>
