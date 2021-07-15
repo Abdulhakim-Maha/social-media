@@ -18,6 +18,9 @@ router.put('/:postId/like', postController.likePost)
 //get timeline post
 router.get('/timeline/:userId', postController.getTimeline)
 
+//get user posts
+router.get('/profile/:username', postController.getUserPosts)
+
 //get a post
 router.get('/:postId', postController.getPost)
 

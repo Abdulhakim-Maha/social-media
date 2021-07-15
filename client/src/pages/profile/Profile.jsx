@@ -33,7 +33,7 @@ const Profile = (props) => {
 			  </div>
             </div>
             <div className={classes.profileRightBottom}>
-              <Feed />
+              <Feed username="austiniqer"/>
               <RightBar profile />
             </div>
           </div>
