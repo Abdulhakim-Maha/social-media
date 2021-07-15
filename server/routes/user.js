@@ -10,7 +10,7 @@ router.put('/:userId', userController.updateUser)
 router.delete('/:userId', userController.deleteUser)
 
 //get a user
-router.get('/:userId', userController.getUser)
+router.get('/', userController.getUser)
 
 //follow a user
 router.put('/:userId/follow', userController.followUser)

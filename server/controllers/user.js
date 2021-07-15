@@ -38,16 +38,31 @@ exports.deleteUser = (req, res, next) => {
 };
 
 exports.getUser = (req, res, next) => {
-  User.findById(req.params.userId)
-    .then((user) => {
-      if (user) {
-        const { password, updatedAt, ...other } = user._doc;
-        return res.status(200).json(other);
-      }
-    })
-    .catch((err) => {
-      res.status(401).json(err);
-    });
+  const userId = req.query.userId;
+  const username = req.query.username;
+  if (userId) {
+    User.findById(userId)
+      .then((user) => {
+        if (user) {
+          const { password, updatedAt, ...other } = user._doc;
+          return res.status(200).json(other);
+        }
+      })
+      .catch((err) => {
+        res.status(401).json(err);
+      });
+  } else if(username){
+    User.findOne({username: username})
+      .then((user) => {
+        if (user) {
+          const { password, updatedAt, ...other } = user._doc;
+          return res.status(200).json(other);
+        }
+      })
+      .catch((err) => {
+        res.status(401).json(err);
+      });
+  }
 };
 
 exports.followUser = (req, res, next) => {
@@ -66,17 +81,17 @@ exports.followUser = (req, res, next) => {
           if (!userNeedToFollow.followers.includes(req.body.userId)) {
             userNeedToFollow
               .updateOne({ $push: { followers: req.body.userId } })
-              .then(result => {
-                console.log('followers added!')
+              .then((result) => {
+                console.log("followers added!");
               })
               .catch((err) => console.log(err));
             currentUser
               .updateOne({ $push: { followings: req.params.userId } })
-              .then(resutl => {
-                console.log('followings added!')
+              .then((resutl) => {
+                console.log("followings added!");
               })
               .catch((err) => console.log(err));
-              return res.status(200).json('this user has been followed!')
+            return res.status(200).json("this user has been followed!");
           } else {
             return res.status(403).json("you already follow this user");
           }
@@ -90,38 +105,38 @@ exports.followUser = (req, res, next) => {
 
 exports.unfollow = (req, res, next) => {
   if (req.body.userId !== req.params.userId) {
-	let userNeedToUnFollow;
-	User.findById(req.params.userId)
-	  .then((user) => {
-		userNeedToUnFollow = user;
-	  })
-	  .catch((err) => {
-		console.log(err);
-	  });
-	User.findById(req.body.userId)
-	  .then((currentUser) => {
-		if (userNeedToUnFollow) {
-		  if (userNeedToUnFollow.followers.includes(req.body.userId)) {
-			userNeedToUnFollow
-			  .updateOne({ $pull: { followers: req.body.userId } })
-			  .then(result => {
-				console.log('followers removed!')
-			  })
-			  .catch((err) => console.log(err));
-			currentUser
-			  .updateOne({ $pull: { followings: req.params.userId } })
-			  .then(resutl => {
-				console.log('followings removed!')
-			  })
-			  .catch((err) => console.log(err));
-			  return res.status(200).json('this user has been unfollowed!')
-		  } else {
-			return res.status(403).json("you dont follow this user");
-		  }
-		}
-	  })
-	  .catch((err) => console.log(err));
+    let userNeedToUnFollow;
+    User.findById(req.params.userId)
+      .then((user) => {
+        userNeedToUnFollow = user;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    User.findById(req.body.userId)
+      .then((currentUser) => {
+        if (userNeedToUnFollow) {
+          if (userNeedToUnFollow.followers.includes(req.body.userId)) {
+            userNeedToUnFollow
+              .updateOne({ $pull: { followers: req.body.userId } })
+              .then((result) => {
+                console.log("followers removed!");
+              })
+              .catch((err) => console.log(err));
+            currentUser
+              .updateOne({ $pull: { followings: req.params.userId } })
+              .then((resutl) => {
+                console.log("followings removed!");
+              })
+              .catch((err) => console.log(err));
+            return res.status(200).json("this user has been unfollowed!");
+          } else {
+            return res.status(403).json("you dont follow this user");
+          }
+        }
+      })
+      .catch((err) => console.log(err));
   } else {
-	res.status(403).json("You cannot follow yourself!");
+    res.status(403).json("You cannot follow yourself!");
   }
-}
+};
