@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import classes from "./Post.module.css";
 import { MoreVert } from "@material-ui/icons";
 import axios from "axios";
 import { format } from "timeago.js";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/auth-context";
 
 const Post = (props) => {
   const [like, setLike] = useState(props.post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
+  const { user: currentUser } = useContext(AuthContext);
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   // const user = Users.find((user) => user.id === props.post.userId);
+
+  useEffect(() => {
+    setIsLiked(props.post.likes.includes(currentUser._id));
+  }, [props.post.likes, currentUser._id]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -23,6 +29,13 @@ const Post = (props) => {
   }, [props.post.userId]);
 
   const likeHandler = () => {
+    try {
+      axios.put("/post/" + props.post._id + "/like", {
+        userId: currentUser._id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked((prev) => !prev);
   };
@@ -32,9 +45,9 @@ const Post = (props) => {
       <div className={classes.postWrapper}>
         <div className={classes.postTop}>
           <div className={classes.postTopLeft}>
-            <Link to={`/profile/${user.username}`} >
+            <Link to={`/profile/${user.username}`}>
               <img
-                src={user.profilePicture || PF + "person/person.png"}
+                src={user.profilePicture || PF + "person/noAvatar.png"}
                 alt=""
                 className={classes.postProfileImg}
               />
