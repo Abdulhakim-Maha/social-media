@@ -53,7 +53,7 @@ function RightBar({ user }) {
         <div className={classes.rightbarFollowings}>
           <div className={classes.rightbarFollowing}>
             <img
-              src={`${PF}person/1.jpeg`}
+              src={`${PF}person/1.jpg`}
               alt=""
               className={classes.rightbarFollowingImg}
             />
@@ -61,7 +61,7 @@ function RightBar({ user }) {
           </div>
           <div className={classes.rightbarFollowing}>
             <img
-              src={`${PF}person/2.jpeg`}
+              src={`${PF}person/2.jpg`}
               alt=""
               className={classes.rightbarFollowingImg}
             />
@@ -69,7 +69,7 @@ function RightBar({ user }) {
           </div>
           <div className={classes.rightbarFollowing}>
             <img
-              src={`${PF}person/3.jpeg`}
+              src={`${PF}person/3.jpg`}
               alt=""
               className={classes.rightbarFollowingImg}
             />
@@ -77,7 +77,7 @@ function RightBar({ user }) {
           </div>
           <div className={classes.rightbarFollowing}>
             <img
-              src={`${PF}person/4.jpeg`}
+              src={`${PF}person/4.jpg`}
               alt=""
               className={classes.rightbarFollowingImg}
             />
@@ -85,7 +85,7 @@ function RightBar({ user }) {
           </div>
           <div className={classes.rightbarFollowing}>
             <img
-              src={`${PF}person/5.jpeg`}
+              src={`${PF}person/5.jpg`}
               alt=""
               className={classes.rightbarFollowingImg}
             />
@@ -93,7 +93,7 @@ function RightBar({ user }) {
           </div>
           <div className={classes.rightbarFollowing}>
             <img
-              src={`${PF}person/6.jpeg`}
+              src={`${PF}person/6.jpg`}
               alt=""
               className={classes.rightbarFollowingImg}
             />
