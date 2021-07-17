@@ -71,6 +71,11 @@
 .hr {
   background-color: rgb(169, 167, 167);
 }
+.registerWrapper{
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
 .loginRegisterButton {
   align-self: center;
   width: 70%;

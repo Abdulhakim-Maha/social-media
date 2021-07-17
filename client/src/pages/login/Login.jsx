@@ -3,11 +3,12 @@ import classes from "./Login.module.css";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/auth-context";
 import { CircularProgress } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const email = useRef();
   const password = useRef();
-  const { user, isFetching,  dispatch } = useContext(AuthContext);
+  const { user, isFetching, dispatch } = useContext(AuthContext);
 
   const formHandler = (event) => {
     event.preventDefault();
@@ -45,7 +46,7 @@ const Login = () => {
               required
               ref={password}
             />
-            <button className={classes.loginButton} type="submit" >
+            <button className={classes.loginButton} type="submit">
               {isFetching ? (
                 <CircularProgress color="white" size="25px" />
               ) : (
@@ -54,13 +55,15 @@ const Login = () => {
             </button>
             <span className={classes.loginForgot}>Forgot Password?</span>
             <hr className={classes.hr} />
-            <button className={classes.loginRegisterButton} type="button" >
-              {isFetching ? (
-                <CircularProgress color="white" size="25px" />
-              ) : (
-                " Create a new account"
-              )}
-            </button>
+            <Link to="/register" className={classes.registerWrapper}>
+              <button className={classes.loginRegisterButton} type="button">
+                {isFetching ? (
+                  <CircularProgress color="white" size="25px" />
+                ) : (
+                  " Create a new account"
+                )}
+              </button>
+            </Link>
           </form>
         </div>
       </div>

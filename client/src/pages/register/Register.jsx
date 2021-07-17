@@ -83,7 +83,7 @@ const Register = () => {
               register
             </button>
             <hr className={classes.hr} />
-            <Link to="/login">
+            <Link to="/login" className={classes.signInWrapper}>
               <button className={classes.signInButton} type="button">
                 Sign In
               </button>

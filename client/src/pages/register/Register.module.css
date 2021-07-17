@@ -95,6 +95,11 @@
   background-color: rgb(169, 167, 167);
   margin-top: 7px;
 }
+.signInWrapper{
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+}
 .signInButton {
   align-self: center;
   width: 50%;
