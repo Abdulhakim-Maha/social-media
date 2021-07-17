@@ -10,8 +10,8 @@ function Share() {
   const description = useRef();
   const [file, setFile] = useState(null);
 
-   const submitHandler = async (e) => {
-    e.preventDefault();
+   const submitHandler = async (event) => {
+    event.preventDefault();
     const newPost = {
       userId: user._id,
       description: description.current.value,
@@ -29,35 +29,9 @@ function Share() {
     }
     try {
       await axios.post("/post", newPost);
-      // window.location.reload();
     } catch (err) {}
   };
 
-  // const submitHandler = async (event) => {
-  //   event.preventDefault();
-  //   const newPost = {
-  //     userId: user._id,
-  //     description: description.current.value,
-  //   };
-  //   if (file) {
-  //     const data = new FormData();
-  //     const filename = Date.now() + file.name;
-  //     data.append("userId", user._id);
-  //     data.append("description", description.current.value);
-  //     data.append("image", file)
-  //     // console.log(file)
-  //     try {
-  //       await axios.post("/post", data );
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   // try {
-  //   //   await axios.post("/post", newPost);
-  //   // } catch (err) {
-  //   //   console.log(err);
-  //   // }
-  // };
 
   return (
     <div className={classes.share}>

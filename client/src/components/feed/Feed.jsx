@@ -3,7 +3,7 @@ import classes from "./Feed.module.css";
 import Share from "../share/Share";
 import Post from "../post/Post";
 import axios from "axios";
-import {AuthContext} from '../../context/auth-context'
+import { AuthContext } from "../../context/auth-context";
 
 function Feed({ username }) {
   const [posts, setPosts] = useState([]);
@@ -15,7 +15,11 @@ function Feed({ username }) {
         ? await axios.get("/post/profile/" + username)
         : await axios.get("/post/timeline/" + user._id);
       // console.log(res)
-      setPosts(res.data);
+      setPosts(
+        res.data.sort((p1, p2) => {
+          return new Date(p2.createdAt) - new Date(p1.createdAt);
+        })
+      );
     };
     fetchPosts();
   }, [username, user._id]);
