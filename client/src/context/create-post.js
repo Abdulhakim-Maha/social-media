@@ -17,7 +17,7 @@ export const PostContextProvider = (props) => {
         setPosted: postHandler,
       }}
     >
-      {props.clildren}
+      {props.children}
     </PostContext.Provider>
   );
 };

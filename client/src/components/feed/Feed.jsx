@@ -4,10 +4,12 @@ import Share from "../share/Share";
 import Post from "../post/Post";
 import axios from "axios";
 import { AuthContext } from "../../context/auth-context";
+import { PostContext } from '../../context/create-post'
 
 function Feed({ username }) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
+  const { posted } = useContext(PostContext)
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -22,7 +24,7 @@ function Feed({ username }) {
       );
     };
     fetchPosts();
-  }, [username, user._id]);
+  }, [username, user._id, posted]);
 
   return (
     <div className={classes.feed}>

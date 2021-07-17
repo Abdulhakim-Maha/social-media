@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import classes from "./Share.module.css";
 import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
 import { AuthContext } from "../../context/auth-context";
+import { PostContext } from "../../context/create-post";
 import axios from "axios";
 
 function Share() {
@@ -9,6 +10,7 @@ function Share() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const description = useRef();
   const [file, setFile] = useState(null);
+  const { setPosted } = useContext(PostContext);
 
    const submitHandler = async (event) => {
     event.preventDefault();
@@ -29,6 +31,7 @@ function Share() {
     }
     try {
       await axios.post("/post", newPost);
+      setPosted()
     } catch (err) {}
   };
 
