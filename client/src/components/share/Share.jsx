@@ -2,26 +2,62 @@ import React, { useContext, useRef, useState } from "react";
 import classes from "./Share.module.css";
 import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
 import { AuthContext } from "../../context/auth-context";
-import axios from 'axios'
+import axios from "axios";
 
 function Share() {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const description = useRef()
-  const [file, setFile] = useState(null)
+  const description = useRef();
+  const [file, setFile] = useState(null);
 
-  const submitHandler = async (event) => {
-    event.preventDefault()
+   const submitHandler = async (e) => {
+    e.preventDefault();
     const newPost = {
-      userId : user._id,
-      description : description.current.value,
+      userId: user._id,
+      description: description.current.value,
+    };
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.image = fileName;
+      console.log(newPost);
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {}
     }
-    try{
+    try {
       await axios.post("/post", newPost);
-    }catch(err){
-      console.log(err)
-    }
-  }
+      // window.location.reload();
+    } catch (err) {}
+  };
+
+  // const submitHandler = async (event) => {
+  //   event.preventDefault();
+  //   const newPost = {
+  //     userId: user._id,
+  //     description: description.current.value,
+  //   };
+  //   if (file) {
+  //     const data = new FormData();
+  //     const filename = Date.now() + file.name;
+  //     data.append("userId", user._id);
+  //     data.append("description", description.current.value);
+  //     data.append("image", file)
+  //     // console.log(file)
+  //     try {
+  //       await axios.post("/post", data );
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   // try {
+  //   //   await axios.post("/post", newPost);
+  //   // } catch (err) {
+  //   //   console.log(err);
+  //   // }
+  // };
 
   return (
     <div className={classes.share}>
@@ -40,12 +76,18 @@ function Share() {
           />
         </div>
         <hr className={classes.shareHr} />
-        <form className={classes.shareBottom} onSubmit={submitHandler} >
+        <form className={classes.shareBottom} onSubmit={submitHandler}>
           <div className={classes.shareOptions}>
             <label htmlFor="file" className={classes.shareOption}>
               <PermMedia htmlColor="#229954" className={classes.shareIcon} />
               <span className={classes.shareOptionText}>Photo/Video</span>
-              <input style={{ display: "none"}} type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} />
+              <input
+                style={{ display: "none" }}
+                type="file"
+                id="file"
+                accept=".png, .jpeg, .jpg"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
             </label>
             <div className={classes.shareOption}>
               <Label htmlColor="#E74C3C" className={classes.shareIcon} />
@@ -63,7 +105,9 @@ function Share() {
               <span className={classes.shareOptionText}>Feelings</span>
             </div>
           </div>
-          <button type="submit" className={classes.shareButton}>Post</button>
+          <button type="submit" className={classes.shareButton}>
+            Post
+          </button>
         </form>
       </div>
     </div>
