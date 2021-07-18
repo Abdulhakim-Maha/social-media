@@ -51,8 +51,8 @@ exports.getUser = (req, res, next) => {
       .catch((err) => {
         res.status(401).json(err);
       });
-  } else if(username){
-    User.findOne({username: username})
+  } else if (username) {
+    User.findOne({ username: username })
       .then((user) => {
         if (user) {
           const { password, updatedAt, ...other } = user._doc;
@@ -138,5 +138,24 @@ exports.unfollow = (req, res, next) => {
       .catch((err) => console.log(err));
   } else {
     res.status(403).json("You cannot follow yourself!");
+  }
+};
+
+exports.getFriends = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const friends = await Promise.all(
+      user.followings.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+    let friendsList = [];
+    friends.map((friend) => {
+      const { _id, username, profilePicture } = friend;
+      friendsList.push({ _id, username, profilePicture });
+    });
+    res.status(200).json(friendsList);
+  } catch (err) {
+    res.status(500).json(err);
   }
 };

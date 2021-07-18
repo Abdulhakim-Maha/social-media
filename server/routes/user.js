@@ -18,4 +18,7 @@ router.put('/:userId/follow', userController.followUser)
 //unfollow a user
 router.put('/:userId/unfollow', userController.unfollow)
 
+//get friends 
+router.get('/friends/:userId', userController.getFriends)
+
 module.exports = router;
