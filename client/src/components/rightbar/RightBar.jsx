@@ -10,11 +10,13 @@ import { Add, Remove } from "@material-ui/icons";
 function RightBar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
-  const { user: currentUser } = useContext(AuthContext);
-  const [followed, setFollowed] = useState(false);
-
+  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const [followed, setFollowed] = useState(
+    currentUser.followings.includes(user?._id)
+  );
+  // setFollowed(currentUser.followings.includes(user?._id));
+  console.log(currentUser.followings.includes(user?._id));
   useEffect(() => {
-    console.log('hello')
     const getFriends = async () => {
       try {
         const friendList = await axios.get("/user/friends/" + user._id);
@@ -29,13 +31,15 @@ function RightBar({ user }) {
   const clickHandler = async () => {
     try {
       if (followed) {
-        await axios.put("/user/" + user._id + "/follow", {
-          userId: currentUser._id,
-        });
-      } else {
         await axios.put("/user/" + user._id + "/unfollow", {
           userId: currentUser._id,
         });
+        dispatch({ type: "UNFOLLOW", payload: user._Id });
+      } else {
+        await axios.put("/user/" + user._id + "/follow", {
+          userId: currentUser._id,
+        });
+        dispatch({ type: "FOLLOW", payload: user._id });
       }
     } catch (err) {
       console.log(err);
@@ -64,7 +68,6 @@ function RightBar({ user }) {
   };
 
   const ProfileRightbar = () => {
-
     return (
       <React.Fragment>
         {user.username !== currentUser.username && (
