@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import classes from "./Share.module.css";
-import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
+import { PermMedia, Label, Room, EmojiEmotions, Cancel } from "@material-ui/icons";
 import { AuthContext } from "../../context/auth-context";
 import { PostContext } from "../../context/create-post";
 import axios from "axios";
@@ -53,6 +53,12 @@ function Share() {
           />
         </div>
         <hr className={classes.shareHr} />
+        {file && (
+          <div className={classes.shareImgContainer}>
+            <img className={classes.shareImg} src={URL.createObjectURL(file)} alt="" />
+            <Cancel className={classes.shareCancelImg} onClick={() => setFile(null)} />
+          </div>
+        )}
         <form className={classes.shareBottom} onSubmit={submitHandler}>
           <div className={classes.shareOptions}>
             <label htmlFor="file" className={classes.shareOption}>
