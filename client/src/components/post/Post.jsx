@@ -14,7 +14,7 @@ const Post = (props) => {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   // const user = Users.find((user) => user.id === props.post.userId);
-  console.log(PF + props.post.image)
+  // console.log(PF + props.post.image)
 
   useEffect(() => {
     setIsLiked(props.post.likes.includes(currentUser._id));

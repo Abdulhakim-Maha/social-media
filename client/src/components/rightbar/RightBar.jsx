@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
 import classes from "./RightBar.module.css";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../../context/auth-context";
+import { Add, Remove } from "@material-ui/icons";
 
 function RightBar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
+  const { user: currentUser } = useContext(AuthContext);
+  const [followed, setFollowed] = useState(false);
 
   useEffect(() => {
+    console.log('hello')
     const getFriends = async () => {
       try {
         const friendList = await axios.get("/user/friends/" + user._id);
@@ -18,8 +24,24 @@ function RightBar({ user }) {
       }
     };
     getFriends();
-  }, [user._id]);
-  console.log(friends)
+  }, [user]);
+
+  const clickHandler = async () => {
+    try {
+      if (followed) {
+        await axios.put("/user/" + user._id + "/follow", {
+          userId: currentUser._id,
+        });
+      } else {
+        await axios.put("/user/" + user._id + "/unfollow", {
+          userId: currentUser._id,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setFollowed(!followed);
+  };
 
   const HomeRightbar = () => {
     return (
@@ -42,8 +64,18 @@ function RightBar({ user }) {
   };
 
   const ProfileRightbar = () => {
+
     return (
       <React.Fragment>
+        {user.username !== currentUser.username && (
+          <button
+            className={classes.rightbarFollowButton}
+            onClick={clickHandler}
+          >
+            {followed ? "Unfollow" : "Follow"}
+            {followed ? <Remove /> : <Add />}
+          </button>
+        )}
         <h4 className={classes.rightbarTitle}>User information</h4>
         <div className={classes.rightbarInfo}>
           <div className={classes.rightbarInfoItem}>
@@ -68,16 +100,25 @@ function RightBar({ user }) {
         <h4 className={classes.rightbarTitle}>User friends</h4>
         <div className={classes.rightbarFollowings}>
           {friends.map((friend) => (
-            <div className={classes.rightbarFollowing}>
-              <img
-                src={friend.profilePicture ? PF + friend.profilePicture : PF + "person/noAvatar.png"}
-                alt=""
-                className={classes.rightbarFollowingImg}
-              />
-              <span className={classes.rightbarFollowingName}>
-                {friend.username}
-              </span>
-            </div>
+            <Link
+              to={"/profile/" + friend.username}
+              style={{ textDecoration: "none" }}
+            >
+              <div className={classes.rightbarFollowing}>
+                <img
+                  src={
+                    friend.profilePicture
+                      ? PF + friend.profilePicture
+                      : PF + "person/noAvatar.png"
+                  }
+                  alt=""
+                  className={classes.rightbarFollowingImg}
+                />
+                <span className={classes.rightbarFollowingName}>
+                  {friend.username}
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </React.Fragment>

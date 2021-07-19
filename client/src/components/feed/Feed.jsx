@@ -29,7 +29,7 @@ function Feed({ username }) {
   return (
     <div className={classes.feed}>
       <div className={classes.feedWrapper}>
-        <Share />
+        {(!username || username === user.username) && <Share />}
         {posts.map((post) => {
           return <Post post={post} key={post._id} />;
         })}
